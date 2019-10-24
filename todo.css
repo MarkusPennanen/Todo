@@ -124,7 +124,7 @@ input {
   font-family: Rockwell;
   color: #595959;
   font-size: large;
-  background: white;
+  background: #F0F8FF;
   border-radius: 10px;
 
 }
@@ -133,11 +133,12 @@ input {
   position: fixed;
   bottom: 15px;
   left: 5px;
-  background: none;
+  background: #F0F8FF;
   border-style: none;
   font-family: Rockwell;
   color: #595959;
   font-size: 25px;
+  border-radius: 10px;
 }
 
 #helpOpen:hover {
@@ -154,7 +155,7 @@ input {
   font-family: Rockwell;
   color: #595959;
   font-size: 15px;
-  background: white;
+  background: #F0F8FF;
   border-radius: 10px;
 }
 
