@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F0F8FF;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  background-color: #F0F8FF;
+}
+
+ul li:nth-child(odd) {
+  background: #e6f3ff;
+}
+
+ul li:hover {
+  background: #99cfff;
+}
+
+ul li {
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;
+  background: #cce7ff;
+  color: #666666;
+  padding: 10px 10px 20px 10px;
+  border-radius: 10px;
+  border-color: white;
+  border-style: solid;
+  text-align: center;
+}
+
+ul li.checked {
+  background: #66ff66;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+.close {
+  position: absolute;
+  right: 100px;
+  padding: 6px 11px 6px 11px;
+  background: none;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 20px;
+  border-style: none;
+}
+
+.close:hover {
+  background-color: #ff6666;
+  color: white;
+  border-radius: 10px;
+}
+
+.header {
+  background-color: #cce7ff;
+  padding: 30px 40px;
+  color: black;
+  text-align: center;
+  font-family: Rockwell;
+  color: #595959;
+  border-radius: 10px;
+  font-size: large;
+}
+
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.datetext {
+  font-size: 10px;
+  position: absolute;
+  right: 10px;
+}
+
+#errortxt {
+  font-size: 15px;
+  position: absolute;
+  top: 140px;
+  left: 770px;
+}
+
+input {
+  margin: 0;
+  border: none;
+  border-radius: 7px;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+.CreateBtn {
+  padding: 8px;
+  width: 25%;
+  background: #66ff66;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  font-family: monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 10px;
+  border-color: #f0f8ff;
+}
+
+.CreateBtn:hover {
+  background-color: #00ff00;
+  border-radius: 20px;
+}
+
+#helptxt {
+  position: fixed;
+  bottom: 1px;
+  left: 10px;
+  font-family: Rockwell;
+  color: #595959;
+  font-size: large;
+  background: white;
+  border-radius: 10px;
+
+}
+
+#helpOpen {
+  position: fixed;
+  bottom: 15px;
+  left: 5px;
+  background: none;
+  border-style: none;
+  font-family: Rockwell;
+  color: #595959;
+  font-size: 25px;
+}
+
+#helpOpen:hover {
+  border-radius: 10px;
+  background: #ff6666;
+}
+
+#helpClose {
+  position: fixed;
+  top: 800px;
+  left: 5px;
+  border-style: none;
+  background: none;
+  font-family: Rockwell;
+  color: #595959;
+  font-size: 15px;
+  background: white;
+  border-radius: 10px;
+}
+
+#helpClose:hover {
+  background-color: #ff6666;
+  border-radius: 10px;
+}
+
+#completeTime {
+  position: absolute;
+  top: 45px;
+  right: 10px;
+}
+
+#completeText{
+  position: absolute;
+  top: 1px;
+  right: 10px;
+}
+
+.timer {
+  position: absolute;
+  left: 10px;
+  font-size: 15px;
+}

@@ -1,0 +1,163 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Todo</title>
+  <link rel="stylesheet" type="text/css" href="todo.css">
+
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+<div id="todoList" class="header">
+<h2>To Do List</h2>
+
+<input type="text" id="listInput" placeholder="Title...">
+<button onclick="createItem()" class="CreateBtn">Add task</button>
+<h3 id="errortxt">Please write something (maximum 130 characters)</h3>
+<p id="completeText">Complete task within</p>
+<select id="completeTime">
+  <option value="none">None</option>
+  <option value="fifteen">15 minutes</option>
+  <option value="thirty">30 minutes</option>
+  <option value="hour">1 hour</option>
+</select>
+</div>
+<ul id="todoItem">
+</ul>
+<p id=helptxt>Write a task with maximum of 130 characters and click the "Add task" button <br><br> Click on a task to mark it as completed <br><br> Click on the cross on the right hand side of the task to remove a task</p>
+<button onclick="helpShow" id="helpOpen">Help</button>
+<button onclick="helpHide" id="helpClose">Close help</button>
+
+<script>
+
+function createItem() { // Creates a new todo item
+  var newItem = document.createElement("li"); //Create new element of list type
+  var itemTxt = document.getElementById("listInput").value; //Get text entered into the input
+  var txt = document.createTextNode(itemTxt); //Create a text node with the text from input
+  newItem.appendChild(txt); //Add the textnode to the list element
+
+  if (itemTxt.length < 1 || itemTxt.length > 130) { //If nothing is written or text over 150 characters give error
+    document.getElementById("listInput").style.background ="#ff8080"; //Background turns red
+    document.getElementById("errortxt").style.display = "block"; //Displays the error text
+  } else {
+    document.getElementById("todoItem").appendChild(newItem); //Creates the new list item with text
+  }
+  document.getElementById("listInput").value = ""; //Empty the input text field
+
+  var btn = document.createElement("button"); //Create new button element
+  var txt = document.createTextNode("\u00D7"); //Creates a text node with cross shape for the button
+  btn.className = "close"; //Adds "close" classname to button
+  btn.appendChild(txt); //Adds the cross shape text node onto the button
+  newItem.appendChild(btn); //Adds the close button to the new list item
+
+  var created = document.createElement("node"); //Creates a node for the date text
+  var d = new Date(); //Gets current date data
+  var day = document.createTextNode("Created " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()); //Creates textnode with the date of creation of list item
+  created.className = "datetext"; //Adds a classname for the date node
+  created.appendChild(day); //Adds the date text node onto the date node
+  newItem.appendChild(created); //Creates the date node
+
+  if (document.getElementById("completeTime").value == "none") { //If no deadline is chosen do nothing
+  } else {
+    var timePast = 0;
+    var timeTotal;
+    if (completeTime.value == "fifteen") { //Get the value chosen on the deadline selector
+      timeTotal = 15;
+    }
+    if (completeTime.value == "thirty") {//and set it
+      timeTotal = 30;
+    }
+    if (completeTime.value == "hour") {//as the total time
+      timeTotal = 60;
+    }
+    var newTimer = document.createElement("node"); //Create new element for timer
+    var timerText = document.createTextNode("Time remaining " + timeTotal + " minutes"); //Create text node for timer text
+    newTimer.appendChild(timerText); //Add timer text onto timer node
+    newTimer.className = "timer"; //Add timer classname for timer node
+    newItem.appendChild(newTimer); //Add the timer node onto the new list item
+
+    setInterval(function () { //Run function timed on a set interval
+      if (timeTotal > 0) { //If the timer has not reached 0
+      timeTotal--; //Reduce the remaining time by one minute
+      newTimer.innerHTML = ("Time remaining " + timeTotal + " minutes"); //Change the timer text to have the current remaining time
+    } else {} //Else do nothing
+
+  }, 60000); //Set funtion to run every 60 seconds
+  }
+
+  for (i = 0; i < close.length; i++) { //Goes through every list item
+    close[i].onclick = function() { //On click of a list item runs a function
+      var div = this.parentElement; //Gets the parent element, the list item
+      div.style.display = "none"; //Sets the list item invisible
+    }
+  }
+
+}
+
+
+var close = document.getElementsByClassName("close"); //Gets every close button (classname close)
+var i;
+for (i = 0; i < close.length; i++) { //Goes through every close button
+  close[i].onclick = function() { //On click of a close button runs function
+    var div = this.parentElement; //Gets parent element (the close button node)
+    div.style.display = "none"; //Sets the close button invisible
+  }
+}
+
+
+var itemslist = document.querySelector('ul'); //Gets the first element of type ul
+itemslist.addEventListener('click', function(chk) { //Adds an event listener to run function on click
+  if (chk.target.tagName === 'LI') { //If the clicked item is of li type
+    chk.target.classList.toggle('checked'); //Adds a "checked" attribute on the list item to change its CSS to mark it as completed
+  }
+}, false);
+
+var inputerr = document.getElementById("listInput"); //Get the listInput element
+inputerr.onclick = function() { //onclick of the listInput element run function
+  inputerr.style.background = "white"; //Return the input box color to white
+  document.getElementById("errortxt").style.display = "none"; //Hide error text
+}
+
+var hopen = document.getElementById("helpOpen"); //Get the element with id "helpOpen"
+hopen.onclick = function() { //On click of that element run function
+  document.getElementById("helptxt").style.display = "block"; //Make the help text visible
+  hopen.style.display = "none"; //Make the help open button invisible
+  hclose.style.display = "block"; //Make the help close button visible
+}
+
+var hclose = document.getElementById("helpClose"); //Get the element with id helpClose
+hclose.onclick = function() { //On click of that element run function
+  document.getElementById("helptxt").style.display = "none"; //Make the help text invisible
+  hclose.style.display = "none"; //Make the help close button invisible
+  hopen.style.display = "block"; //Make the help open button visible
+}
+
+document.getElementById("errortxt").style.display = "none"; //Hide error text on default
+document.getElementById("helpClose").style.display = "none"; //Hide help close button on default
+document.getElementById("helptxt").style.display = "none"; //Hide help text on default
+
+</script>
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+  window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+  ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+</html>
